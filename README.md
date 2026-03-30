@@ -87,8 +87,8 @@ This project uses **Bruin** to orchestrate an end-to-end data pipeline for GitHu
    bruin run \  
   --start-date 2026-01-01 \  
   --end-date 2026-01-31 \  
-  -e default
-When running, there is an asset [test_gcs.py](./assets/test_gcs.py) that test connection with storage.
+  -e default  
+When running, there is an asset [test_gcs.py](./assets/test_gcs.py) that test connection with storage.  
 ***Note*** 
 While ingestion and transformation processes has been done manually in this project for demonstration purposes, the entire GitHub Archive dataset is already available as a public BigQuery dataset [githubarchive](https://console.cloud.google.com/bigquery?project=githubarchive&page=project&ws=!1m0). This means in practice, you can skip the manual ingestion and directly start from the data warehouse for analytics and dashboard creation.  
 Performing the ingestion manually allowed me to explore:
