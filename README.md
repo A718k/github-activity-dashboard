@@ -1,57 +1,44 @@
-# Bruin - Python Template
+# GitHub Events Dashboard (Bruin)
 
-This pipeline is a simple example of a Bruin pipeline. It demonstrates how to use the `bruin` CLI to build and run a pipeline.
+This repository ingests GitHub event archives and creates reports in BigQuery.
 
-The pipeline includes three Python assets that uses the same dependencies, but with 3 different versions of Python:
-- 3.11
-- 3.12
-- 3.13
+## Assets
 
-This pipeline is a good example of Bruin's Python execution abilities.
+- `assets/staging/raw_archive_github_events.sql`: table backed by BigQuery external JSON with GitHub events.
+- `assets/staging/raw_archive_github_events.py`: optional local Python ingestion helper (deprecated for bruin SQL pipeline).
+- `assets/reports/github_events_engagement.sql`: top 20 repos with engagement percentage and counts for PRs/issues/comments.
+- `assets/reports/github_hourly_distribution.sql`: hourly distribution of event types across the day.
 
-A couple of remarks:
-- All of these assets are executed in isolated environments.
-- All of the assets have separate `requirements.txt` files, which may contain different dependencies.
+## How to run
 
-## Running the pipeline
+1. Enter the pipeline folder:
 
-Run the following command:
-```shell
-bruin run .
+```sh
+cd /home/aligri/projects/dtc_project/bruin/github_events_pipeline
 ```
 
-> [!NOTE]
-> The first execution might take a bit longer since we'll need to install Python and the dependencies. The next executions should be super fast.
+2. Run the table materialization (one time / as needed):
 
-```shell
-Starting the pipeline execution...
-
-[2023-03-16T18:25:14Z] [worker-0] Running: dashboard.bruin-test
-[2023-03-16T18:25:16Z] [worker-0] Completed: dashboard.bruin-test (1.681s)
-[2023-03-16T18:25:16Z] [worker-4] Running: hello
-[2023-03-16T18:25:16Z] [worker-4] [hello] >> Hello, world!
-[2023-03-16T18:25:16Z] [worker-4] Completed: hello (116ms)
-
-Executed 2 tasks in 1.798s
+```sh
+bruin run assets/staging/raw_archive_github_events.sql --start-date 2026-01-01 --end-date 2026-01-31
 ```
 
-You can also run a single task:
+3. Run the report assets:
 
-```shell
-bruin run assets/python311/asset.py                            
+```sh
+bruin run assets/reports/github_events_engagement.sql --start-date 2026-01-01 --end-date 2026-01-31
+bruin run assets/reports/github_hourly_distribution.sql --start-date 2026-01-01 --end-date 2026-01-31
 ```
 
-```shell
-Starting the pipeline execution...
+4. Adjust date range for specific analysis.
 
-[2023-03-16T18:25:59Z] [worker-0] Running: hello
-[2023-03-16T18:26:00Z] [worker-0] [hello] >> Hello, world!
-[2023-03-16T18:26:00Z] [worker-0] Completed: hello (103ms)
+## Notes
 
+- The pipeline uses `bigquery-default` connection and expects `final-project-dtc.raw_archive.github_events` as source.
+- `.gitignore` includes common Python artifacts (`__pycache__`, `.pyc`) and local env files.
 
-Executed 1 tasks in 103ms
-```
+## Next section (TODO)
 
-You can optionally pass a `--downstream` flag to run the task with all of its downstreams.
-
-That's it, good luck!
+- Project summary
+- Dashboard analysis
+- Key metrics and chart definitions
