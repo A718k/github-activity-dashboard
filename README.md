@@ -44,7 +44,7 @@ flowchart TD
 
     A --> B --> C --> D --> E --> G
     D --> F --> G
-
+```
 
 1. Data Ingestion (Data Lake)
     * Raw GitHub Archive data (JSON .gz files) is ingested and stored in Google Cloud Storage (GCS).
