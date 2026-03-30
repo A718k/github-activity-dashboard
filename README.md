@@ -114,6 +114,15 @@ Repositories are sorted by total engagement events to surface the most actively 
 *Bot filtering attempts*:  
 I explored filtering by actor names containing patterns like %bot%, but this was not sufficient to fully discriminate bots from humans. As a result, the dashboard presents the best approximation of human-driven activity using engagement-focused events.
 
+[Time-of-Day Activity](https://lookerstudio.google.com/s/uqHs6d_hg7c)
+The second dashboard focuses on the distribution of GitHub events across hours of the day in January 2026. This visualization helps explore temporal patterns in developer activity.  
+I hoped to identify peaks in activity that might correspond to working hours or specific days of the week.  
+Surprisingly, events appear to be evenly distributed across all hours. To verify this, I also looked specifically at engagement events — Pull Request events and Issue Comment events — which showed the same uniform pattern.  
+Possible explanation:
+* GitHub timestamps are recorded in UTC, so contributors from different time zones overlap, smoothing out any local activity peaks.
+* Automated processes or bots may also contribute to a steady stream of events throughout the day.  
+*Insight*:
+While the expected working-hour peaks were not observed, the dashboard confirms that developer activity is continuous and worldwide, highlighting GitHub’s truly global nature.
 
 
 
