@@ -15,9 +15,6 @@ This project implements a modern data pipeline architecture, transforming raw Gi
 
 ### Pipeline Flow
 
-```markdown id="mermaid2"
-## Data Pipeline Overview
-
 ```mermaid
 flowchart TD
     subgraph Ingestion
