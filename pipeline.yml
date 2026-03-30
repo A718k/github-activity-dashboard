@@ -1,7 +1,8 @@
 name: bruin-init
+description: "Daily ingestion and processing of GitHub event data using Bruin."
 schedule: daily
-start_date: "2023-03-20"
-catchup: false
+start_date: "2023-03-31"
+catchup: false ## Set to true for backfill if needed
 variables:
   gcs_bucket:
     type: string
