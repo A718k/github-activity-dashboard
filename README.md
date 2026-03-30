@@ -78,7 +78,7 @@ This project uses **Bruin** to orchestrate an end-to-end data pipeline for GitHu
    Writes the cleaned and typed data into raw_archive.github_events.  
    Uses merge strategy so new data can be added incrementally without duplicating existing rows.  
    Prepare the data for reporting.  
-[raw_archive_github_events.py](./assets/staging/raw_archive_github_events.py)  is doing the same thing, but locally. It takes all files, process them locally with pandas and uploads them to BigQuerry. It is so resource expensive and I designed it before this sql asset (processing of one day took ona hour ). Decided to leave it there for comparing speeds of local and cloud computing.
+[raw_archive_github_events.py](./assets/staging/raw_archive_github_events.py)  is doing the same thing, but locally. It takes all files, process them locally with pandas and uploads them to BigQuerry. It is so resource expensive and I designed it before this sql asset (processing of one day took an hour ). Decided to leave it there for comparing speeds of local and cloud computing.
 3. [github_events_engagement.sql](./assets/reports/github_events_engagement.sql)  
    It computes: Total events per repository, Engagement events (Pull Requests,Issues,Comments), Engagement percentage and powers the “Most Popular Repositories” dashboard  
    [github_hourly_distribution.sql](./assets/reports/github_hourly_distribution.sql)  
@@ -87,13 +87,30 @@ This project uses **Bruin** to orchestrate an end-to-end data pipeline for GitHu
    bruin run \  
   --start-date 2026-01-01 \  
   --end-date 2026-01-31 \  
-  -e default  
-
+  -e default
+When running, there is an asset [test_gcs.py](./assets/test_gcs.py) that test connection with storage.
 ***Note*** 
 While ingestion and transformation processes has been done manually in this project for demonstration purposes, the entire GitHub Archive dataset is already available as a public BigQuery dataset [githubarchive](https://console.cloud.google.com/bigquery?project=githubarchive&page=project&ws=!1m0). This means in practice, you can skip the manual ingestion and directly start from the data warehouse for analytics and dashboard creation.  
 Performing the ingestion manually allowed me to explore:
 * Schema design for semi-structured event data
 * Incremental MERGE operations in BigQuery
 * Staging pipelines for large datasets
+
+## Dashboards
+
+The final step of our project is visualizing the results of our analyses in an interactive dashboard. The dashboard helps us quickly understand patterns and trends in GitHub activity.  
+
+[Most Popular Repositories](https://lookerstudio.google.com/s/nQmKOQrDoaw)
+
+For this tile, I focused on repository-level engagement. In report layer, I chose to filter events by engagement types — Pull Requests, Issues, Issue Comments, and Pull Request Review Comments.  
+*Why filter by engagement events?*    
+Many repositories are heavily supported by automated systems or bots, which can inflate total event counts without reflecting real developer activity. By focusing on engagement events, I aim to highlight repositories that are primarily “humanized” — where real developers are actively contributing.
+*Metrics shown*:
+*Total engagement events: The number of all engagement events in the selected period.
+*Engagement percentage: The share of engagement events relative to total events.
+*Sorting:  
+Repositories are sorted by total engagement events to surface the most actively participated projects.
+*Bot filtering attempts*:
+I explored filtering by actor names containing patterns like %bot%, but this was not sufficient to fully discriminate bots from humans. As a result, the dashboard presents the best approximation of human-driven activity using engagement-focused events.
 
 
