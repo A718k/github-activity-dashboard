@@ -92,7 +92,7 @@ When running, there is an asset [test_gcs.py](./assets/test_gcs.py) that tests c
 
 ***Note***   
 While ingestion and transformation processes has been done manually in this project for demonstration purposes, the entire GitHub Archive dataset is already available as a public BigQuery dataset [githubarchive](https://console.cloud.google.com/bigquery?project=githubarchive&page=project&ws=!1m0). This means in practice, you can skip the manual ingestion and directly start from the data warehouse for analytics and dashboard creation.  
-Performing the ingestion manually allowed me to explore:
+Performing the ingestion manually allowed me to demonstrate:
 * Schema design for semi-structured event data
 * Incremental MERGE operations in BigQuery
 * Staging pipelines for large datasets
