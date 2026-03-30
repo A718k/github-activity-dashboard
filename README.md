@@ -110,7 +110,10 @@ Many repositories are heavily supported by automated systems or bots, which can 
 * Engagement percentage: The share of engagement events relative to total events.
 * Sorting:    
 Repositories are sorted by total engagement events to surface the most actively participated projects.  
+
 *Bot filtering attempts*:  
 I explored filtering by actor names containing patterns like %bot%, but this was not sufficient to fully discriminate bots from humans. As a result, the dashboard presents the best approximation of human-driven activity using engagement-focused events.
+
+
 
 
