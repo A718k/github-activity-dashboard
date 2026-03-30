@@ -104,13 +104,13 @@ The final step of our project is visualizing the results of our analyses in an i
 
 For this tile, I focused on repository-level engagement. In report layer, I chose to filter events by engagement types — Pull Requests, Issues, Issue Comments, and Pull Request Review Comments.  
 *Why filter by engagement events?*    
-Many repositories are heavily supported by automated systems or bots, which can inflate total event counts without reflecting real developer activity. By focusing on engagement events, I aim to highlight repositories that are primarily “humanized” — where real developers are actively contributing.
-*Metrics shown*:
+Many repositories are heavily supported by automated systems or bots, which can inflate total event counts without reflecting real developer activity. By focusing on engagement events, I aim to highlight repositories that are primarily “humanized” — where real developers are actively contributing.  
+*Metrics shown*:  
 *Total engagement events: The number of all engagement events in the selected period.
 *Engagement percentage: The share of engagement events relative to total events.
-*Sorting:  
-Repositories are sorted by total engagement events to surface the most actively participated projects.
-*Bot filtering attempts*:
+*Sorting:    
+Repositories are sorted by total engagement events to surface the most actively participated projects.  
+*Bot filtering attempts*:  
 I explored filtering by actor names containing patterns like %bot%, but this was not sufficient to fully discriminate bots from humans. As a result, the dashboard presents the best approximation of human-driven activity using engagement-focused events.
 
 
