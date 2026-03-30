@@ -1,4 +1,4 @@
-# GitHub Insights: Exploring Developer Activity
+# GitHub Activity Dashboard: Exploring Developer Activity
 
 Welcome to GitHub Insights, a project built as part of Data Talk Club DE Zoomcamp! This repository showcases a full end-to-end data pipeline that processes GitHub event data. Throughout this project, I applied and strengthened key skills from the course
 ## Project Objective
